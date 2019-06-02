@@ -74,7 +74,7 @@ class Header extends React.Component {
             >
               <NavSearch
                 className={this.props.focused ? "focused" : ""}
-                onFocus={this.props.handleSearchFocus}
+                onFocus={() => this.props.handleSearchFocus(this.props.list)}
                 onBlur={this.props.handleSearchBlur}
               />
             </CSSTransition>
@@ -108,8 +108,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleSearchFocus() {
-      dispatch(creator.getTagList());
+    handleSearchFocus(list) {
+      (list.size === 0) && dispatch(creator.getTagList());
       dispatch(creator.searchFocus());
     },
     handleSearchBlur() {
