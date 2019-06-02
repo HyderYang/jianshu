@@ -2,6 +2,7 @@ import React from 'react'
 import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
 
+import { creator } from './store'
 import {
   HeaderWrapper,
   Logo,
@@ -17,6 +18,7 @@ import {
   Addition,
   Button
 } from './style';
+
 
 const Header = (props) => {
   return (
@@ -66,16 +68,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     handleSearchFocus() {
-      const action = {
-        type: 'search_focus'
-      };
-      dispatch(action);
+      dispatch(creator.searchFocus());
     },
     handleSearchBlur() {
-      const action = {
-        type: 'search_blur'
-      };
-      dispatch(action);
+      dispatch(creator.searchBlur());
     }
   };
 };

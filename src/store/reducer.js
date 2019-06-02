@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import Header from './chunk/header'
+import { reducer as HeaderReducer } from '../common/header/store'
 
 export default combineReducers({
-    'header': Header,
+    'header': HeaderReducer,
 })
