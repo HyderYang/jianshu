@@ -1,6 +1,14 @@
 import * as constants from './contants'
-import { fromJS } from "immutable";
+import {fromJS} from "immutable";
 import Axios from "axios";
+
+const changeList = (data) => {
+  return {
+    type: constants.CHANGE_LIST,
+    data: fromJS(data),
+    totalPage: Math.ceil(data.length / 10)
+  }
+};
 
 export const searchFocus = () => {
   return {
@@ -14,11 +22,23 @@ export const searchBlur = () => {
   }
 };
 
-export const changeList = (data) => {
-    return {
-      type: constants.CHANGE_LIST,
-      data: fromJS(data)
-    }
+export const handleMouseIn = () => {
+  return {
+    type: constants.MOUSE_IN
+  }
+};
+
+export const handleMouseLeave = () => {
+  return {
+    type: constants.MOUSE_IN
+  }
+};
+
+export const handleChangePage = (page) => {
+  return {
+    type: constants.CHANGE_PAGE,
+    page
+  }
 };
 
 export const getTagList = () => {
@@ -27,7 +47,7 @@ export const getTagList = () => {
       const data = res.data;
       dispatch(changeList(data.data));
     }).catch((e) => {
-        console.log(e)
+      console.log(e)
     })
   }
 };

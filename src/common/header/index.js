@@ -21,21 +21,32 @@ import {
 
 class Header extends React.Component {
   getListArea = (show) => {
-    if (this.props.focused) {
+    const { totalPage, mouseIn, list, page, focused, handleChangePage, handleMouseOut, handleMouseIn } = this.props;
+    const newList = list.toJS();
+    const showList = [];
+
+    if (newList.length > 0) {
+      for (let i = (page-1)*10; i < page*10; i++) {
+        showList.push(
+          <SearchInfoItem key={newList[i]}>{newList[i]}</SearchInfoItem>
+        )
+      }
+    }
+
+    if (focused || mouseIn) {
       return (
-        <SearchInfo>
+        <SearchInfo
+          onMouseEnter={handleMouseIn}
+          onMouseLeave={handleMouseOut}
+        >
           <SearchInfoTitle>
             热门搜索
-            <SearchInfoSwitch>
+            <SearchInfoSwitch onClick={() => handleChangePage(page, totalPage)}>
               换一换
             </SearchInfoSwitch>
           </SearchInfoTitle>
           <SearchInfoList>
-            {
-              this.props.list.map((item, index) => {
-                return <SearchInfoItem key={item}>{item}</SearchInfoItem>
-              })
-            }
+            {showList}
           </SearchInfoList>
         </SearchInfo>
       );
@@ -43,8 +54,6 @@ class Header extends React.Component {
       return null;
     }
   };
-
-
 
   render() {
     return (
@@ -90,7 +99,10 @@ class Header extends React.Component {
 const mapStateToProps = (state) => {
   return {
     focused: state.getIn(['header', "focused"]),
-    list: state.getIn(['header', 'list'])
+    list: state.getIn(['header', 'list']),
+    page: state.getIn(['header', 'page']),
+    totalPage: state.getIn(['header', 'totalPage']),
+    mouseIn: state.getIn(['header', 'mouseIn'])
   };
 };
 
@@ -102,6 +114,20 @@ const mapDispatchToProps = (dispatch) => {
     },
     handleSearchBlur() {
       dispatch(creator.searchBlur());
+    },
+    handleMouseIn() {
+      dispatch(creator.handleMouseIn());
+    },
+    handleMouseOut() {
+      dispatch(creator.handleMouseLeave())
+    },
+    handleChangePage(page, totalPage) {
+      if (page >= totalPage) {
+        page = 1
+      }else{
+        page = page + 1
+      }
+      dispatch(creator.handleChangePage(page))
     }
   };
 };
