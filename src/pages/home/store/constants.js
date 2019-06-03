@@ -1,1 +1,1 @@
-export const example = "home/example";
+export const CHANGE_HOME_INFO = "home/change_home_info";
