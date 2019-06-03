@@ -6,6 +6,7 @@ import store from './store/index';
 import Header from "./common/header";
 import Home from "./pages/home"
 import Detail from "./pages/detail"
+import Login from "./pages/login"
 
 export default class App extends React.Component{
   render() {
@@ -17,6 +18,7 @@ export default class App extends React.Component{
             <div>
               <Route path={"/"} exact component={Home} />
               <Route path={"/detail"} exact component={Detail} />
+              <Route path={"/login"} exact component={Login} />
             </div>
           </BrowserRouter>
         </div>

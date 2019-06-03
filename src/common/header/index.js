@@ -1,6 +1,7 @@
 import React from 'react'
 import {CSSTransition} from "react-transition-group";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 
 import {creator} from './store'
 import {
@@ -62,7 +63,9 @@ class Header extends React.Component {
         <Nav>
           <NavItem className={"left active"}>首页</NavItem>
           <NavItem className={"left"}>App</NavItem>
+          {/*<Link to={'/login'}>*/}
           <NavItem className={"right"}>登陆</NavItem>
+          {/*</Link>*/}
           <NavItem className={"right"}>
             <i className={"iconfont"}>&#xe636;</i>
           </NavItem>
