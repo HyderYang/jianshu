@@ -59,13 +59,20 @@ class Header extends React.Component {
   render() {
     return (
       <HeaderWrapper>
-        <Logo/>
+        <Link to={"/"}>
+          <Logo/>
+        </Link>
         <Nav>
           <NavItem className={"left active"}>首页</NavItem>
           <NavItem className={"left"}>App</NavItem>
-          {/*<Link to={'/login'}>*/}
-          <NavItem className={"right"}>登陆</NavItem>
-          {/*</Link>*/}
+          {
+            this.props.login ?
+              <NavItem className={"right"}>退出</NavItem> :
+              <Link to={'/login'}>
+                <NavItem className={"right"}>登陆</NavItem>
+              </Link>
+          }
+
           <NavItem className={"right"}>
             <i className={"iconfont"}>&#xe636;</i>
           </NavItem>
@@ -105,7 +112,8 @@ const mapStateToProps = (state) => {
     list: state.getIn(['header', 'list']),
     page: state.getIn(['header', 'page']),
     totalPage: state.getIn(['header', 'totalPage']),
-    mouseIn: state.getIn(['header', 'mouseIn'])
+    mouseIn: state.getIn(['header', 'mouseIn']),
+    login: state.getIn(['Login', 'login'])
   };
 };
 

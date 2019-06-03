@@ -13,9 +13,9 @@ export default class App extends React.Component{
     return (
       <Provider store={store}>
         <div>
-          <Header />
           <BrowserRouter>
             <div>
+              <Header />
               <Route path={"/"} exact component={Home} />
               <Route path={"/detail"} exact component={Detail} />
               <Route path={"/login"} exact component={Login} />

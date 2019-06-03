@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from "react-redux";
 
 import { LoginWrapper, LoginBox, Input, Button } from './style';
+import { creator } from "./store";
 
 class Login extends React.PureComponent{
 
@@ -10,9 +11,13 @@ class Login extends React.PureComponent{
     return (
       <LoginWrapper>
         <LoginBox>
-          <Input placeholder='账号'/>
-          <Input placeholder='密码' type='password'/>
-          <Button>登陆</Button>
+          <Input placeholder='账号' innerRef={(input) => {
+              this.account = input
+          }}/>
+          <Input placeholder='密码' type='password' innerRef={(input) => {
+            this.password = input
+          }}/>
+          <Button onClick={() => this.props.login(this.account, this.password)}>登陆</Button>
         </LoginBox>
       </LoginWrapper>
     );
@@ -25,8 +30,12 @@ const mapState = () => {
     }
 };
 
-const mapDispatch = () => {
-  return null
+const mapDispatch = (dispatch) => {
+  return {
+    login(account, password){
+      creator.login(account.value, password.login)
+    }
+  }
 };
 
 export default connect(mapState, mapDispatch)(Login);
