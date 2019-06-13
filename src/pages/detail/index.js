@@ -1,11 +1,9 @@
 import React from 'react'
 
-class Detail extends React.Component{
+class Detail extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    }
+    this.state = {}
   }
 
   render() {
