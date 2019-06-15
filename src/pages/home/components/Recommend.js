@@ -1,11 +1,9 @@
 import React from 'react'
 
-class Recommend extends React.Component{
+class Recommend extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    }
+    this.state = {}
   }
 
   render() {

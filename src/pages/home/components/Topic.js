@@ -1,12 +1,9 @@
 import React from 'react'
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 
-import {
-  TopicWrapper,
-  TopicItem
-} from "../style";
+import {TopicItem, TopicWrapper} from "../style";
 
-class Topic extends React.Component{
+class Topic extends React.Component {
 
   render() {
     const {topicList} = this.props;
