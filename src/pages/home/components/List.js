@@ -1,16 +1,13 @@
 import React from 'react'
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 
-import {
-  ListInfo,
-  ListItem
-} from "../style";
+import {ListInfo, ListItem} from "../style";
 
-class List extends React.Component{
-  
+class List extends React.Component {
+
   render() {
-    const { list } = this.props;
+    const {list} = this.props;
     return (
       <div>
         {
@@ -19,7 +16,7 @@ class List extends React.Component{
               <ListItem>
                 <img className={"pic"} src={item.get('imgUrl')} alt={item.get('title')}/>
                 <ListInfo>
-                  <h3 className={"title"} >{item.get('title')}</h3>
+                  <h3 className={"title"}>{item.get('title')}</h3>
                   <p className={"desc"}>{item.get('desc')}</p>
                 </ListInfo>
               </ListItem>
@@ -32,9 +29,9 @@ class List extends React.Component{
 }
 
 const mapState = (state) => {
-    return {
-      list: state.getIn(['Home', 'articleList'])
-    }
+  return {
+    list: state.getIn(['Home', 'articleList'])
+  }
 };
 
 const mapDispatch = () => {

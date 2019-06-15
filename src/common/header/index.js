@@ -5,29 +5,29 @@ import {Link} from "react-router-dom";
 
 import {creator} from './store'
 import {
+  Addition,
+  Button,
   HeaderWrapper,
   Logo,
   Nav,
   NavItem,
-  SearchWrapper,
   NavSearch,
   SearchInfo,
-  SearchInfoTitle,
-  SearchInfoSwitch,
-  SearchInfoList,
   SearchInfoItem,
-  Addition,
-  Button
+  SearchInfoList,
+  SearchInfoSwitch,
+  SearchInfoTitle,
+  SearchWrapper
 } from './style';
 
 class Header extends React.Component {
   getListArea = (show) => {
-    const { totalPage, mouseIn, list, page, focused, handleChangePage, handleMouseOut, handleMouseIn } = this.props;
+    const {totalPage, mouseIn, list, page, focused, handleChangePage, handleMouseOut, handleMouseIn} = this.props;
     const newList = list.toJS();
     const showList = [];
 
     if (newList.length > 0) {
-      for (let i = (page-1)*10; i < page*10; i++) {
+      for (let i = (page - 1) * 10; i < page * 10; i++) {
         showList.push(
           <SearchInfoItem key={newList[i]}>{newList[i]}</SearchInfoItem>
         )
@@ -135,7 +135,7 @@ const mapDispatchToProps = (dispatch) => {
     handleChangePage(page, totalPage) {
       if (page >= totalPage) {
         page = 1
-      }else{
+      } else {
         page = page + 1
       }
       dispatch(creator.handleChangePage(page))
